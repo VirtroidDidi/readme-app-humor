@@ -1,4 +1,4 @@
-<h1 align="center">AppHumor 🎭</h1>
+<h1 align="center">AppHumor </h1>
 
 <p align="center">
   <strong>Seu diário emocional inteligente, resiliente e offline-first.</strong>
@@ -20,3 +20,194 @@
 <img src="URL_DO_SEU_GIF_DEMO_AQUI" width="280"/>
 <img src="URL_DO_SEU_PRINT_INSIGHTS_AQUI" width="280"/>
 </p>
+
+## 🌟 Funcionalidades Principais
+
+<table>
+  <tr>
+    <td width="60%">
+      <h3>🔄 Sincronização Resiliente (Offline-First)</h3>
+      <p>
+        Não deixe a falta de internet parar seu diário. O AppHumor salva dados localmente e sincroniza silenciosamente com o <strong>Firebase Realtime Database</strong> assim que a conexão retorna.
+      </p>
+      <p>
+        <em>Tech: Repository Pattern + Flags de Sincronização</em>
+      </p>
+    </td>
+    <td width="40%">
+      <img src="URL_DO_GIF_OFFLINE_AQUI" alt="Demonstração Offline" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td width="60%">
+      <h3>📊 Insights & Autoconhecimento</h3>
+      <p>
+        Algoritmos locais analisam seus registros para identificar padrões. Descubra seu "Melhor Dia da Semana" e "Humor Predominante" com gráficos interativos.
+      </p>
+      <p>
+        <em>Tech: MPAndroidChart + Algoritmos de Análise Customizados</em>
+      </p>
+    </td>
+    <td width="40%">
+      <img src="URL_DO_PRINT_INSIGHTS_AQUI" alt="Tela de Insights" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td width="60%">
+      <h3>🔥 Gamificação & Hábito (Streak)</h3>
+      <p>
+        Mantenha a constância! O app rastreia seus dias consecutivos e celebra pequenas vitórias com animações de confete para reforçar o hábito positivo.
+      </p>
+      <p>
+        <em>Tech: Lottie Animations + Lógica de Calendário</em>
+      </p>
+    </td>
+    <td width="40%">
+      <img src="URL_DO_GIF_STREAK_AQUI" alt="Animação de Confete" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td width="60%">
+      <h3>🔔 Lembretes Inteligentes</h3>
+      <p>
+        Nunca esqueça de se registrar. Sistema de agendamento local que respeita a bateria do dispositivo e funciona mesmo se o app for fechado.
+      </p>
+      <p>
+        <em>Tech: WorkManager + Permissões Android 13+</em>
+      </p>
+    </td>
+    <td width="40%">
+      <img src="URL_DO_PRINT_NOTIFICACAO_AQUI" alt="Notificação" width="100%">
+    </td>
+  </tr>
+</table>
+
+## 🛠️ Arquitetura e Tech Stack
+
+O **AppHumor** foi construído seguindo os princípios da **Arquitetura Limpa** e o padrão **MVVM** (Model-View-ViewModel). Isso garante que a lógica de negócios (como o cálculo de insights) esteja separada da interface do usuário.
+
+O **AppHumor** foi construído seguindo os princípios da **Arquitetura Limpa** e o padrão **MVVM** (Model-View-ViewModel). Isso garante que a lógica de negócios (como o design de insights) fique separada da interface do usuário.
+
+### 📐 Diagrama de Fluxo de Dados
+
+```mermaid
+flowchart TD
+    %% --- Definição de Cores (Material Design) ---
+    classDef ui fill:#2196F3,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef vm fill:#FFC107,stroke:#fff,stroke-width:2px,color:#000;
+    classDef repo fill:#4CAF50,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef cloud fill:#673AB7,stroke:#fff,stroke-width:2px,color:#fff,stroke-dasharray: 5 5;
+
+    %% --- Blocos (Nós) ---
+    UI["📱 Camada de UI<br/>(Activity, Fragments & XML)"]:::ui
+    VM["🧠 Camada de Apresentação<br/>(ViewModel & LiveData)"]:::vm
+    Repo["💾 Camada de Dados<br/>(HumorRepository & Sync)"]:::repo
+    Cloud["☁️ Fontes Externas<br/>(Firebase & WorkManager)"]:::cloud
+
+    %% --- Conexões ---
+    UI -->|"1. Ação do Usuário"| VM
+    VM -->|"2. Observa Estado"| UI
+    
+    VM -->|"3. Solicita Dados"| Repo
+    Repo -->|"4. Retorna Dados"| VM
+    
+    Repo <-->|"5. Sincroniza (Auto)"| Cloud
+  ```
+
+
+
+### 📂 Estrutura de Pacotes
+
+O projeto está modularizado por camadas funcionais para facilitar a escalabilidade:
+
+```text
+com.example.apphumor
+├── 📂 di/                # Injeção de Dependência Manual (DependencyProvider)
+├── 📂 models/            # Data Classes e Modelos de Domínio
+├── 📂 repository/        # Single Source of Truth (Lógica Offline + Firebase)
+├── 📂 ui/                # Camada de Visualização (Activities, Fragments, Adapters)
+├── 📂 utils/             # Extension Functions e Lógica de Negócio Pura
+├── 📂 viewmodel/         # Gerenciamento de Estado (StateFlow/LiveData)
+└── 📂 worker/            # Tarefas em Background (WorkManager)
+ ```
+
+## 🚀 Instalação e Teste
+
+Você tem duas opções para testar o AppHumor:
+
+### 📱 Opção 1: Testar o APK (Recomendado)
+Baixe a versão mais recente compilada e instale diretamente no seu dispositivo Android. Não requer configuração.
+
+<a href="LINK_DA_SUA_RELEASE_AQUI">
+  <img alt="Baixar APK" src="https://img.shields.io/badge/Download-APK%20(v1.0)-3DDC84?style=for-the-badge&logo=android&logoColor=white" />
+</a>
+
+---
+
+### 💻 Opção 2: Compilar do Código Fonte
+<details>
+  <summary><strong>Clique para expandir o guia de configuração (Requer Firebase)</strong></summary>
+
+  <br>
+  Como este projeto utiliza serviços em nuvem (Firebase Auth e Realtime Database), você precisará configurar seu próprio ambiente para compilar o código:
+
+  **Pré-requisitos:**
+  * Android Studio Iguana ou superior.
+  * JDK 17.
+
+  **Passo a Passo:**
+  1. **Clone o repositório:**
+     ```bash
+     git clone [https://github.com/VirtroidDidi/readme-app-humor.git](https://github.com/VirtroidDidi/readme-app-humor.git)
+     ```
+  2. **Crie um projeto no [Console do Firebase](https://console.firebase.google.com/).**
+  3. **Ative os produtos:**
+     * **Authentication:** Método Email/Senha.
+     * **Realtime Database:** Crie no modo de teste.
+  4. **Adicione o arquivo de configuração:**
+     * Baixe o `google-services.json` do console.
+     * Cole na pasta: `app/google-services.json`.
+  5. **Compile e Rode:** Shift + F10 no Android Studio.
+</details>
+
+
+
+
+## 👨‍💻 Autor
+
+<table border="0">
+  <tr>
+    <td width="100px">
+      <img src="https://github.com/VirtroidDidi.png" width="100px" style="border-radius:50%"/>
+    </td>
+    <td>
+      <strong>Osvaldi Filho</strong><br>
+      <em>Desenvolvedor Android</em><br>
+      <br>
+      <a href="https://www.linkedin.com/in/osvaldi-jesus-80a021281/" target="_blank">
+        <img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=flat&logo=Linkedin&logoColor=white" alt="LinkedIn Badge"/>
+      </a>
+      <a href="mailto:osvaldijesus@gmail.com">
+        <img src="https://img.shields.io/badge/-Gmail-D14836?style=flat&logo=Gmail&logoColor=white" alt="Gmail Badge"/>
+      </a>
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+<p align="center">
+  Feito com ❤️ e Kotlin.
+</p>
+
+
+
+
+
+
+
+
+
