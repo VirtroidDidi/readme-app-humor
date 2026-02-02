@@ -131,6 +131,21 @@ com.example.apphumor
 └── 📂 worker/            # Tarefas em Background (WorkManager)
  ```
 
+## 💡 Decisões de Arquitetura & Trade-offs
+
+Este projeto foi desenhado simulando um ambiente de MVP (Produto Mínimo Viável), onde o custo e a velocidade de implementação são prioritários.
+
+### 🖼️ Estratégia de Imagens (Base64 vs Storage)
+Para manter a infraestrutura 100% gratuita e acessível (sem necessidade de cadastro de cartão de crédito no plano Blaze do Firebase), optou-se por armazenar as fotos de perfil como **Strings Base64** diretamente no Realtime Database.
+
+**Como mitigamos problemas de performance?**
+Sabendo que Base64 pode inflar o banco de dados, implementei um pipeline rigoroso de compressão em `ImageUtils.kt`:
+1.  **Downsampling:** Redimensionamento forçado para no máximo **400px** (largura ou altura).
+2.  **Compressão:** Qualidade JPEG reduzida para **70%**.
+3.  **Resultado:** Avatares que pesariam 2MB+ são armazenados com **menos de 50KB**, garantindo carregamento rápido mesmo em redes móveis e sem travar a UI.
+
+
+
 ## 🚀 Instalação e Teste
 
 Você tem duas opções para testar o AppHumor:
