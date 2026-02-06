@@ -113,9 +113,6 @@ flowchart TD
     
     Repo <-->|"5. Sincroniza (Auto)"| Cloud
   ```
-
-
-
 ### 📂 Estrutura de Pacotes
 
 O projeto está modularizado por camadas funcionais para facilitar a escalabilidade:
@@ -130,6 +127,54 @@ com.example.apphumor
 ├── 📂 viewmodel/         # Gerenciamento de Estado (StateFlow/LiveData)
 └── 📂 worker/            # Tarefas em Background (WorkManager)
  ```
+
+
+
+
+<br>
+
+## 🧠 Insight Engine (Lógica de Negócio)
+
+Diferente de apps que apenas armazenam dados, o AppHumor possui uma camada de inteligência local (`InsightAnalysis.kt`) que processa o histórico do usuário para gerar valor real.
+
+**Como o algoritmo trabalha:**
+
+* 🌊 **Detecção de Ondas:** Identifica se o usuário está em uma "maré" de ansiedade ou alegria nos últimos 30 dias.
+* 📅 **Padrões Temporais:** Cruza dados para descobrir o "Melhor Dia da Semana" do usuário.
+* 💡 **Feedback Ativo:** Se detectar padrões negativos (ex: 3 dias de "Sad"), sugere ações práticas de autocuidado.
+
+<details>
+  <summary><strong>🔍 Clique para ver a implementação do Algoritmo</strong></summary>
+  <br>
+
+```kotlin
+// Trecho de InsightAnalysis.kt: Lógica de decisão baseada em frequência
+fun generateInsight(notes: List<HumorNote>): InsightResult {
+    // 1. Agrupa humores e conta a frequência
+    val moodCounts = notes.groupingBy { it.humor }.eachCount()
+    val dominantMood = moodCounts.maxByOrNull { it.value }?.key
+
+    // 2. Aplica estratégia de feedback (Strategy Pattern)
+    return when (dominantMood) {
+        HumorType.ANXIOUS -> InsightResult(
+            title = "Respire Fundo 🍃",
+            message = "Detectamos ansiedade recente. Que tal a técnica 4-7-8?"
+        )
+        HumorType.HAPPY -> InsightResult(
+            title = "Ótima Fase! ⭐",
+            message = "Aproveite essa onda de energia para tirar planos do papel."
+        )
+        else -> InsightResult.Default()
+    }
+}
+```
+</details>
+
+
+
+
+
+
 
 ## 💡 Decisões de Arquitetura & Trade-offs
 
@@ -187,27 +232,6 @@ Baixe a versão mais recente compilada e instale diretamente no seu dispositivo 
 
 
 
-
-## 👨‍💻 Autor
-
-<table border="0">
-  <tr>
-    <td width="100px">
-      <img src="https://github.com/VirtroidDidi.png" width="100px" style="border-radius:50%"/>
-    </td>
-    <td>
-      <strong>Osvaldi Filho</strong><br>
-      <em>Desenvolvedor Android</em><br>
-      <br>
-      <a href="https://www.linkedin.com/in/osvaldi-jesus-80a021281/" target="_blank">
-        <img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=flat&logo=Linkedin&logoColor=white" alt="LinkedIn Badge"/>
-      </a>
-      <a href="mailto:osvaldijesus@gmail.com">
-        <img src="https://img.shields.io/badge/-Gmail-D14836?style=flat&logo=Gmail&logoColor=white" alt="Gmail Badge"/>
-      </a>
-    </td>
-  </tr>
-</table>
 
 
 
