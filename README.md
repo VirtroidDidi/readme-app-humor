@@ -17,8 +17,7 @@
 </p>
 
 <p align="center">
-<img src="URL_DO_SEU_GIF_DEMO_AQUI" width="280"/>
-<img src="URL_DO_SEU_PRINT_INSIGHTS_AQUI" width="280"/>
+<img src="https://github.com/VirtroidDidi/readme-app-humor/blob/main/phone_mockup_4.jpg" width="1000"/>
 </p>
 
 ## 🌟 Funcionalidades Principais
