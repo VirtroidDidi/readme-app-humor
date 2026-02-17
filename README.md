@@ -62,7 +62,7 @@
       </p>
     </td>
     <td width="40%">
-      <img src="URL_DO_GIF_STREAK_AQUI" alt="Animação de Confete" width="100%">
+      <img src="https://github.com/VirtroidDidi/readme-app-humor/blob/main/sequencia.jpg"  width="100%">
     </td>
   </tr>
   <tr>
