@@ -34,7 +34,7 @@
       </p>
     </td>
     <td width="40%">
-      <img src="URL_DO_GIF_OFFLINE_AQUI" alt="Demonstração Offline" width="100%">
+      <img src="https://github.com/VirtroidDidi/readme-app-humor/blob/main/offline.jpg" width="100%">
     </td>
   </tr>
   <tr>
@@ -76,7 +76,7 @@
       </p>
     </td>
     <td width="40%">
-      <img src="URL_DO_PRINT_NOTIFICACAO_AQUI" alt="Notificação" width="100%">
+      <img src="https://github.com/VirtroidDidi/readme-app-humor/blob/main/notifica%C3%A7%C3%A3o.jpg" width="100%">
     </td>
   </tr>
 </table>
