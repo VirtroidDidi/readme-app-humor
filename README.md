@@ -85,7 +85,6 @@
 
 O **AppHumor** foi construído seguindo os princípios da **Arquitetura Limpa** e o padrão **MVVM** (Model-View-ViewModel). Isso garante que a lógica de negócios (como o cálculo de insights) esteja separada da interface do usuário.
 
-O **AppHumor** foi construído seguindo os princípios da **Arquitetura Limpa** e o padrão **MVVM** (Model-View-ViewModel). Isso garante que a lógica de negócios (como o design de insights) fique separada da interface do usuário.
 
 ### 📐 Diagrama de Fluxo de Dados
 
